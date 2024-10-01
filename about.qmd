@@ -1,6 +1,6 @@
 ---
 title: "Shu's Blog"
-image: profile.jpg
+image: shu.jpg
 about:
   template: jolla
   links:
@@ -22,12 +22,10 @@ This is a blog template for the Business Analytics program at Monash University,
 ### Global Cheese Market Analysis
 In this project, I used data from Cheese.com to analyze the global cheese market, exploring the relationship between fat content, texture, flavor, and aroma across cheeses from different countries. The analysis revealed trends in high-fat cheese popularity in European markets and provided recommendations for market expansion.
 
-- [Read more about the project](path/to/project-page)
 
 ### Customer Behavior Analysis in Retail
 In this project, I analyzed customer behavior data from the retail industry, using machine learning models to identify key consumption patterns. The insights from this analysis helped improve customer experience and increase sales by optimizing marketing strategies and boosting customer loyalty.
 
-- [Read more about the project](path/to/project-page)
 
 ## About Me
 
@@ -35,6 +33,6 @@ I am a Business Analytics student at Monash University, passionate about solving
 
 ## Contact
 
-Feel free to connect with me on GitHub, LinkedIn, or Twitter. You can also reach out via email at your-email@example.com for inquiries or collaboration.
+Feel free to connect with me on GitHub, LinkedIn, or Twitter. You can also reach out via email at swan0249@student.monash.edu for inquiries or collaboration.
 
 ---
