@@ -1,7 +1,7 @@
 ---
 title: "Global Cheese Analysis: Fat Content and Characteristics"
 author: "Shu Wang"
-date: "2024-09-29"
+date: "2024-09-05"
 format:
   html:
     toc: true
@@ -115,17 +115,16 @@ ggplot(avg_fat_by_texture %>% top_n(10, avg_fat_content), aes(x = reorder(textur
 
 ## Key Results
 
-- **Fat Content by Country**: European countries like France, Germany, and the United Kingdom have the highest average fat content in their cheeses. This reflects traditional cheese-making practices that emphasize richness and creaminess.
-- **Fat Content by Texture**: Cheeses with creamier textures, such as "Creamy" and "Soft," tend to have higher fat content, while firmer cheeses exhibit lower fat levels.
+-   **Fat Content by Country**: European countries like France, Germany, and the United Kingdom have the highest average fat content in their cheeses. This reflects traditional cheese-making practices that emphasize richness and creaminess.
+-   **Fat Content by Texture**: Cheeses with creamier textures, such as "Creamy" and "Soft," tend to have higher fat content, while firmer cheeses exhibit lower fat levels.
 
 ## Conclusion
 
 This analysis revealed important relationships between cheese fat content, texture, and country of origin. European cheeses, particularly from France and Germany, are characterized by higher fat content, which contributes to their rich textures. These insights can guide cheese producers in refining their products to better meet consumer demands in different regions, with specific attention to texture and fat content.
 
-
 ## References
 
-- Cheese.com (2024). *Global Cheese Information*. Retrieved from [Cheese.com](https://www.cheese.com/).
-- TidyTuesday (2024). *Cheese Dataset*. Retrieved from [GitHub](https://github.com/rfordatascience/tidytuesday/tree/master/data/2024/2024-06-04).
+-   Cheese.com (2024). *Global Cheese Information*. Retrieved from [Cheese.com](https://www.cheese.com/).
+-   TidyTuesday (2024). *Cheese Dataset*. Retrieved from [GitHub](https://github.com/rfordatascience/tidytuesday/tree/master/data/2024/2024-06-04).
 
-```
+
