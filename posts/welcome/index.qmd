@@ -32,7 +32,7 @@ head(cheeses)
 
 The data contains some missing values and non-numeric fat content entries. We clean the dataset by filtering out cheeses with missing fat content and converting the fat content to numeric values where applicable.
 
-```{r data-cleaning, echo=TRUE}
+```{r data-cleaning, echo=TRUE,warning=FALSE}
 # Load necessary libraries
 library(tidyverse)
 library(stringr)
@@ -95,7 +95,7 @@ avg_fat_by_texture <- cheese_data_clean %>%
 knitr::kable(head(avg_fat_by_texture, 10), col.names = c("Texture", "Average Fat Content (%)"))
 ```
 
-### Visualization: Fat Content by Texture
+### Fat Content by Texture
 
 We plot the average fat content by texture, limiting the chart to the top 10 textures for clarity. We also wrap long texture names and rotate the x-axis labels to improve readability.
 
