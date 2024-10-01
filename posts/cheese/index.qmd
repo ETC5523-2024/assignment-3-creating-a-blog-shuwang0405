@@ -6,8 +6,8 @@ format:
   html:
     toc: true
     toc-depth: 2
-categories: [news, analysis]
-image: "cheese1.jpg"
+categories: [analysis]
+image: "image.jpeg"
 ---
 
 ## Executive Summary
@@ -84,7 +84,7 @@ top_countries <- avg_fat_by_country %>%
 
 # Plot the results
 ggplot(top_countries, aes(x = reorder(country, avg_fat_content), y = avg_fat_content)) +
-  geom_bar(stat = "identity", fill = "skyblue") +
+  geom_bar(stat = "identity", fill = "orange") +
   coord_flip() +
   labs(title = "Top 10 Countries by Average Fat Content in Cheese", 
        x = "Country", 
@@ -120,7 +120,7 @@ avg_fat_by_texture <- avg_fat_by_texture %>%
 
 # Plot average fat content by texture
 ggplot(avg_fat_by_texture %>% top_n(10, avg_fat_content), aes(x = reorder(texture, avg_fat_content), y = avg_fat_content)) +
-  geom_bar(stat = "identity", fill = "lightgreen") +
+  geom_bar(stat = "identity", fill = "darkgoldenrod") +
   coord_flip() +
   labs(title = "Top 10 Average Fat Content of Cheeses by Texture", x = "Texture", y = "Average Fat Content (%)") +
   theme_minimal() +
