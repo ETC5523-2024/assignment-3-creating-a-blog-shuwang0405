@@ -18,6 +18,8 @@ This blog explores data sourced from Cheese.com to analyze how fat content, text
 
 Cheese is a globally popular food, known for its diversity in flavor, texture, and nutritional composition. This analysis focuses on how the fat content of cheese varies by country, and how this affects characteristics like texture and flavor. Understanding these patterns can help cheese producers tailor their products to consumer tastes in different regions.
 
+![cheese](cheese.jpg)
+
 ## Data Description
 
 We utilized data from Cheese.com, which includes information on the fat content, texture, flavor, and aroma of cheeses from various countries. The dataset consists of several variables that describe cheese properties such as fat content, country of origin, and type of milk used.
