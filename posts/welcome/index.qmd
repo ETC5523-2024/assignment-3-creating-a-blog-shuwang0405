@@ -1,12 +1,51 @@
 ---
-title: "Welcome To My Blog Template"
-author: "Emi Tanaka"
-date: "2022-07-18"
-categories: [news]
+title: "Global Cheese Analysis: Fat Content and Characteristics"
+author: "Shu Wang"
+date: "2024-09-29"
+format:
+  html:
+    toc: true
+    toc-depth: 2
 ---
 
-This is the first post in a Quarto blog. Welcome!
+## Executive Summary
 
-![](thumbnail.jpg)
+This blog explores data sourced from Cheese.com to analyze how fat content, texture, flavor, and aroma vary among cheeses from different countries. The analysis reveals that European cheeses, such as those from France, Germany, and the United Kingdom, tend to have higher fat content, contributing to their rich textures and aromas. These insights provide useful information for cheese producers aiming to optimize their products based on consumer preferences in various markets.
 
+## Problem Description
+
+Cheese is a globally popular food, known for its diversity in flavor, texture, and nutritional composition. This analysis focuses on how the fat content of cheese varies by country, and how this affects characteristics like texture and flavor. Understanding these patterns can help cheese producers tailor their products to consumer tastes in different regions.
+
+## Data Description
+
+We utilized data from Cheese.com, which includes information on the fat content, texture, flavor, and aroma of cheeses from various countries. The dataset consists of several variables that describe cheese properties such as fat content, country of origin, and type of milk used.
+
+```{r data-loading, echo=TRUE}
+# Load the cheese data from GitHub
+cheeses <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv')
+
+# Display the first few rows of the dataset
+head(cheeses)
+```
+
+## Data Cleaning and Preparation
+
+The data contains some missing values and non-numeric fat content entries. We clean the dataset by filtering out cheeses with missing fat content and converting the fat content to numeric values where applicable.
+
+```{r data-cleaning, echo=TRUE}
+# Load necessary libraries
+library(tidyverse)
+library(stringr)
+
+# Clean the cheese data
+cheese_data_clean <- cheeses %>%
+  filter(!is.na(fat_content)) %>%
+  mutate(
+    fat_content = as.numeric(str_extract(fat_content, "\\d+")),
+    country = ifelse(is.na(country), "Unknown", country)
+  )
+
+# Display cleaned data
+head(cheese_data_clean)
+```
 
