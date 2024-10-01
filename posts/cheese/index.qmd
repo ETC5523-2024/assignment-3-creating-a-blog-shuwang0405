@@ -111,9 +111,9 @@ knitr::kable(head(avg_fat_by_texture, 10), col.names = c("Texture", "Average Fat
 
 ### Visualization: Fat Content by Texture
 
-We plot the average fat content by texture, limiting the chart to the top 15 textures for clarity. We also wrap long texture names and rotate the x-axis labels to improve readability.
+We plot the average fat content by texture, limiting the chart to the top 50 textures for clarity. We also wrap long texture names and rotate the x-axis labels to improve readability.
 
-```{r plot-results-texture, fig.cap="Figure 2: Average Fat Content of Cheeses by Texture", echo=FALSE}
+```{r plot-results-texture, fig.cap="Figure 2: Average Fat Content of Cheeses by Texture", echo=FALSE, warning=FALSE}
 
 avg_fat_by_texture <- avg_fat_by_texture %>%
   mutate(texture = case_when(
@@ -125,13 +125,13 @@ avg_fat_by_texture <- avg_fat_by_texture %>%
   ))
 
 
-top_textures <- avg_fat_by_texture %>% top_n(15, avg_fat_content)
+top_textures <- avg_fat_by_texture %>% top_n(50, avg_fat_content)
 
 ggplot(top_textures, aes(x = reorder(texture, avg_fat_content), y = avg_fat_content)) +
   geom_point(size = 5, alpha = 0.8, color = "orange") +  
   geom_line(aes(group = 1), color = "steelblue", size = 1.5) +  
   coord_flip() +  
-  labs(title = "Top 15 Average Fat Content of Cheeses by Texture", 
+  labs(title = "Top 50 Average Fat Content of Cheeses by Texture", 
        x = "Texture", 
        y = "Average Fat Content (%)") +
   theme_minimal(base_size = 9) +  

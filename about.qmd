@@ -6,7 +6,7 @@ about:
   links:
     - icon: github
       text: Github
-      href: https://github.com/ETC5523-2024/assignment-3-creating-a-blog-shuwang0405
+      href: https://github.com/shuwang0405
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/your-linkedin-profile
