@@ -64,20 +64,36 @@ avg_fat_by_country <- cheese_data_clean %>%
 
 # Display the top 10 countries with the highest average fat content
 knitr::kable(head(avg_fat_by_country, 10), col.names = c("Country", "Average Fat Content (%)"))
+
 ```
 
 ### Visualization: Average Fat Content by Country
 
+
 We visualize the average fat content of cheeses by country in a bar chart to highlight the differences across regions.
 
-```{r plot-results-country, fig.cap="Figure 1: Average Fat Content of Cheeses by Country", echo=FALSE}
-# Plot average fat content by country
-ggplot(avg_fat_by_country, aes(x = reorder(country, avg_fat_content), y = avg_fat_content)) +
+```{r plot-results-country, fig. cap="Figure 1: Average Fat Content of Cheeses by Country", echo=FALSE}
+
+library(tidyverse)
+
+avg_fat_by_country <- avg_fat_by_country %>%
+  distinct(country, .keep_all = TRUE)
+
+top_countries <- avg_fat_by_country %>%
+  top_n(10, avg_fat_content)
+
+ggplot(top_countries, aes(x = reorder(country, avg_fat_content), y = avg_fat_content)) +
   geom_bar(stat = "identity", fill = "skyblue") +
   coord_flip() +
-  labs(title = "Average Fat Content of Cheeses by Country", x = "Country", y = "Average Fat Content (%)") +
-  theme_minimal()
+  labs(title = "Top 10 Countries by Average Fat Content in Cheese", 
+       x = "Country", 
+       y = "Average Fat Content (%)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  
+
 ```
+
+
 
 ### Fat Content by Texture
 
@@ -93,6 +109,7 @@ avg_fat_by_texture <- cheese_data_clean %>%
 
 # Display the top 10 textures with the highest average fat content
 knitr::kable(head(avg_fat_by_texture, 10), col.names = c("Texture", "Average Fat Content (%)"))
+
 ```
 
 ### Fat Content by Texture
