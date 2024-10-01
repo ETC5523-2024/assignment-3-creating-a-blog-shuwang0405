@@ -113,3 +113,14 @@ ggplot(avg_fat_by_texture %>% top_n(10, avg_fat_content), aes(x = reorder(textur
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+## Key Results
+
+- **Fat Content by Country**: European countries like France, Germany, and the United Kingdom have the highest average fat content in their cheeses. This reflects traditional cheese-making practices that emphasize richness and creaminess.
+- **Fat Content by Texture**: Cheeses with creamier textures, such as "Creamy" and "Soft," tend to have higher fat content, while firmer cheeses exhibit lower fat levels.
+
+## Conclusion
+
+This analysis revealed important relationships between cheese fat content, texture, and country of origin. European cheeses, particularly from France and Germany, are characterized by higher fat content, which contributes to their rich textures. These insights can guide cheese producers in refining their products to better meet consumer demands in different regions, with specific attention to texture and fat content.
+
+
+
