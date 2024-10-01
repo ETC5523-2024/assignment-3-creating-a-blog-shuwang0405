@@ -8,7 +8,7 @@ website:
       - about.qmd
       - icon: github
         text: "GitHub"
-        href: https://github.com/ETC5523-2024/assignment-3-creating-a-blog-shuwang0405.git
+        href: https://github.com/ETC5523-2024/assignment-3-creating-a-blog-shuwang0405
 
 format:
   html:
