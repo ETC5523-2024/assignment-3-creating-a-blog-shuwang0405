@@ -1,0 +1,49 @@
+body {
+  background-color: #fff8dc; /* Change the background color to a cheese-related light yellow */
+  color: #5c4033; /* Set the font color to brown to enhance harmony with the cheese theme */
+}
+
+/* Heading colors */
+h1, h2, h3, h4, h5, h6 {
+  color: #d4a017; /* Set the heading color to a golden yellow, highlighting the cheese texture */
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #f4c430; /* Change the navbar background color to a deep yellow to emphasize the theme */
+  color: #ffffff; /* Keep the navbar font color white for clear contrast */
+}
+
+/* Link styles */
+a {
+  color: #d4a017; /* Set the link color to golden yellow, matching the overall theme */
+}
+
+a:hover {
+  color: #ffcc33; /* Set the hover state of links to a light yellow for added interactive effect */
+}
+
+/* Button styles */
+button {
+  background-color: #ffcc33; /* Set the button background color to light yellow */
+  color: #5c4033; /* Use brown for the button text to ensure readability */
+}
+
+button:hover {
+  background-color: #f4a460; /* Darken the button background color on hover to create a dynamic effect */
+}
+
+/* Additional details: borders and tables */
+.border {
+  border-color: #d4a017; /* Adjust border color to golden yellow */
+}
+
+table {
+  border: 2px solid #d4a017; /* Use golden yellow for table borders */
+}
+
+th, td {
+  border: 1px solid #f4c430; /* Set the border for table cells to deep yellow */
+}
+
+
