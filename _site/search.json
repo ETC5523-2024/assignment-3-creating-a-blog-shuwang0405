@@ -1,61 +1,5 @@
 [
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "",
-    "text": "This blog explores data sourced from Cheese.com to analyze how fat content, texture, flavor, and aroma vary among cheeses from different countries. The analysis reveals that European cheeses, such as those from France, Germany, and the United Kingdom, tend to have higher fat content, contributing to their rich textures and aromas. These insights provide useful information for cheese producers aiming to optimize their products based on consumer preferences in various markets."
-  },
-  {
-    "objectID": "posts/welcome/index.html#executive-summary",
-    "href": "posts/welcome/index.html#executive-summary",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "",
-    "text": "This blog explores data sourced from Cheese.com to analyze how fat content, texture, flavor, and aroma vary among cheeses from different countries. The analysis reveals that European cheeses, such as those from France, Germany, and the United Kingdom, tend to have higher fat content, contributing to their rich textures and aromas. These insights provide useful information for cheese producers aiming to optimize their products based on consumer preferences in various markets."
-  },
-  {
-    "objectID": "posts/welcome/index.html#problem-description",
-    "href": "posts/welcome/index.html#problem-description",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "Problem Description",
-    "text": "Problem Description\nCheese is a globally popular food, known for its diversity in flavor, texture, and nutritional composition. This analysis focuses on how the fat content of cheese varies by country, and how this affects characteristics like texture and flavor. Understanding these patterns can help cheese producers tailor their products to consumer tastes in different regions."
-  },
-  {
-    "objectID": "posts/welcome/index.html#data-description",
-    "href": "posts/welcome/index.html#data-description",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "Data Description",
-    "text": "Data Description\nWe utilized data from Cheese.com, which includes information on the fat content, texture, flavor, and aroma of cheeses from various countries. The dataset consists of several variables that describe cheese properties such as fat content, country of origin, and type of milk used.\n\n# Load the cheese data from GitHub\ncheeses &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv')\n\nRows: 1187 Columns: 19\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (17): cheese, url, milk, country, region, family, type, fat_content, cal...\nlgl  (2): vegetarian, vegan\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n# Display the first few rows of the dataset\nhead(cheeses)\n\n# A tibble: 6 × 19\n  cheese     url   milk  country region family type  fat_content calcium_content\n  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;          \n1 Aarewasser http… cow   Switze… &lt;NA&gt;   &lt;NA&gt;   semi… &lt;NA&gt;        &lt;NA&gt;           \n2 Abbaye de… http… sheep France  Pays … &lt;NA&gt;   semi… &lt;NA&gt;        &lt;NA&gt;           \n3 Abbaye de… http… cow   France  &lt;NA&gt;   &lt;NA&gt;   semi… 40-46%      &lt;NA&gt;           \n4 Abbaye de… http… cow   France  Burgu… &lt;NA&gt;   semi… &lt;NA&gt;        &lt;NA&gt;           \n5 Abbaye de… http… cow   France  Savoie &lt;NA&gt;   soft… &lt;NA&gt;        &lt;NA&gt;           \n6 Abbaye de… http… cow   France  provi… &lt;NA&gt;   semi… &lt;NA&gt;        &lt;NA&gt;           \n# ℹ 10 more variables: texture &lt;chr&gt;, rind &lt;chr&gt;, color &lt;chr&gt;, flavor &lt;chr&gt;,\n#   aroma &lt;chr&gt;, vegetarian &lt;lgl&gt;, vegan &lt;lgl&gt;, synonyms &lt;chr&gt;,\n#   alt_spellings &lt;chr&gt;, producers &lt;chr&gt;"
-  },
-  {
-    "objectID": "posts/welcome/index.html#data-cleaning-and-preparation",
-    "href": "posts/welcome/index.html#data-cleaning-and-preparation",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "Data Cleaning and Preparation",
-    "text": "Data Cleaning and Preparation\nThe data contains some missing values and non-numeric fat content entries. We clean the dataset by filtering out cheeses with missing fat content and converting the fat content to numeric values where applicable.\n\n# Load necessary libraries\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(stringr)\n\n# Clean the cheese data\ncheese_data_clean &lt;- cheeses %&gt;%\n  filter(!is.na(fat_content)) %&gt;%\n  mutate(\n    fat_content = as.numeric(str_extract(fat_content, \"\\\\d+\")),\n    country = ifelse(is.na(country), \"Unknown\", country)\n  )\n\n# Display cleaned data\nhead(cheese_data_clean)\n\n# A tibble: 6 × 19\n  cheese     url   milk  country region family type  fat_content calcium_content\n  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;          \n1 Abbaye de… http… cow   France  &lt;NA&gt;   &lt;NA&gt;   semi…          40 &lt;NA&gt;           \n2 Abbaye du… http… cow   France  Nord-… &lt;NA&gt;   semi…          50 &lt;NA&gt;           \n3 Abertam    http… sheep Czech … Karlo… &lt;NA&gt;   hard…          45 &lt;NA&gt;           \n4 Acorn      http… sheep United… Betha… &lt;NA&gt;   hard…          52 &lt;NA&gt;           \n5 Adelost    http… cow   Sweden  &lt;NA&gt;   Blue   semi…          50 &lt;NA&gt;           \n6 ADL Brick… http… cow   Canada  Princ… Chedd… semi…          12 &lt;NA&gt;           \n# ℹ 10 more variables: texture &lt;chr&gt;, rind &lt;chr&gt;, color &lt;chr&gt;, flavor &lt;chr&gt;,\n#   aroma &lt;chr&gt;, vegetarian &lt;lgl&gt;, vegan &lt;lgl&gt;, synonyms &lt;chr&gt;,\n#   alt_spellings &lt;chr&gt;, producers &lt;chr&gt;"
-  },
-  {
-    "objectID": "posts/welcome/index.html#analysis",
-    "href": "posts/welcome/index.html#analysis",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "Analysis",
-    "text": "Analysis\n\nFat Content by Country\nWe first calculate the average fat content of cheeses by country to explore how fat content varies geographically. This provides insights into regional cheese-making practices.\n\n# Calculate average fat content by country\navg_fat_by_country &lt;- cheese_data_clean %&gt;%\n  group_by(country) %&gt;%\n  summarize(avg_fat_content = mean(fat_content, na.rm = TRUE)) %&gt;%\n  arrange(desc(avg_fat_content))\n\n# Display the top 10 countries with the highest average fat content\nknitr::kable(head(avg_fat_by_country, 10), col.names = c(\"Country\", \"Average Fat Content (%)\"))\n\n\n\n\nCountry\nAverage Fat Content (%)\n\n\n\n\nUnited Kingdom\n52.00000\n\n\nAustria, Germany\n50.00000\n\n\nCroatia\n50.00000\n\n\nHungary\n50.00000\n\n\nLithuania\n50.00000\n\n\nEngland\n48.80000\n\n\nSwitzerland\n48.33333\n\n\nUnited Kingdom, Wales\n48.00000\n\n\nGermany\n47.00000\n\n\nScotland\n46.50000\n\n\n\n\n\n\n\nVisualization: Average Fat Content by Country\nWe visualize the average fat content of cheeses by country in a bar chart to highlight the differences across regions.\n\n\n\n\n\nFigure 1: Average Fat Content of Cheeses by Country\n\n\n\n\n\n\nFat Content by Texture\nWe now examine the relationship between cheese texture and fat content by calculating the average fat content for different cheese textures. This analysis helps to understand whether certain textures are associated with higher or lower fat levels.\n\n# Calculate average fat content by texture\navg_fat_by_texture &lt;- cheese_data_clean %&gt;%\n  filter(!is.na(texture)) %&gt;%\n  group_by(texture) %&gt;%\n  summarize(avg_fat_content = mean(fat_content, na.rm = TRUE)) %&gt;%\n  arrange(desc(avg_fat_content))\n\n# Display the top 10 textures with the highest average fat content\nknitr::kable(head(avg_fat_by_texture, 10), col.names = c(\"Texture\", \"Average Fat Content (%)\"))\n\n\n\n\nTexture\nAverage Fat Content (%)\n\n\n\n\ncreamy, dense\n62.5\n\n\ncrumbly, firm, open\n62.0\n\n\ncreamy, crumbly, spreadable\n60.0\n\n\ncreamy, smooth, spreadable\n55.0\n\n\ncrumbly, dense, firm, flaky, smooth\n54.0\n\n\nsoft\n54.0\n\n\ncompact, creamy\n50.0\n\n\ncompact, crumbly, firm, open\n50.0\n\n\ncreamy, dense, firm\n50.0\n\n\ncreamy, grainy, open\n50.0\n\n\n\n\n\n\n\nVisualization: Fat Content by Texture\nWe plot the average fat content by texture, limiting the chart to the top 10 textures for clarity. We also wrap long texture names and rotate the x-axis labels to improve readability.\n\n\n\n\n\nFigure 2: Average Fat Content of Cheeses by Texture"
-  },
-  {
-    "objectID": "posts/welcome/index.html#conclusion",
-    "href": "posts/welcome/index.html#conclusion",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "Conclusion",
-    "text": "Conclusion\nThis analysis revealed important relationships between cheese fat content, texture, and country of origin. European cheeses, particularly from France and Germany, are characterized by higher fat content, which contributes to their rich textures. These insights can guide cheese producers in refining their products to better meet consumer demands in different regions, with specific attention to texture and fat content."
-  },
-  {
-    "objectID": "posts/welcome/index.html#references",
-    "href": "posts/welcome/index.html#references",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "References",
-    "text": "References\n\nCheese.com (2024). Global Cheese Information. Retrieved from Cheese.com.\nTidyTuesday (2024). Cheese Dataset. Retrieved from GitHub.\n\n```"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Shu’s Blog",
@@ -63,11 +7,25 @@
     "text": "This is a blog template for the Business Analytics program at Monash University, showcasing my projects and experience in the fields of business analytics and data science. I focus on using data-driven methods to support business decisions, with research areas including data analysis, machine learning, business process optimization, and market trend forecasting."
   },
   {
-    "objectID": "posts/welcome/index.html#key-results",
-    "href": "posts/welcome/index.html#key-results",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "Key Results",
-    "text": "Key Results\n\nFat Content by Country: European countries like France, Germany, and the United Kingdom have the highest average fat content in their cheeses. This reflects traditional cheese-making practices that emphasize richness and creaminess.\nFat Content by Texture: Cheeses with creamier textures, such as “Creamy” and “Soft,” tend to have higher fat content, while firmer cheeses exhibit lower fat levels."
+    "objectID": "about.html#projects",
+    "href": "about.html#projects",
+    "title": "Shu’s Blog",
+    "section": "Projects",
+    "text": "Projects\n\nGlobal Cheese Market Analysis\nIn this project, I used data from Cheese.com to analyze the global cheese market, exploring the relationship between fat content, texture, flavor, and aroma across cheeses from different countries. The analysis revealed trends in high-fat cheese popularity in European markets and provided recommendations for market expansion.\n\n\nCustomer Behavior Analysis in Retail\nIn this project, I analyzed customer behavior data from the retail industry, using machine learning models to identify key consumption patterns. The insights from this analysis helped improve customer experience and increase sales by optimizing marketing strategies and boosting customer loyalty."
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "Shu’s Blog",
+    "section": "About Me",
+    "text": "About Me\nI am a Business Analytics student at Monash University, passionate about solving business problems through data analysis and predictive modeling. During my studies, I have worked on various data-driven projects, gaining experience in optimizing business processes, forecasting market trends, and providing decision support. My GitHub profile showcases the projects and code I have developed."
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "Shu’s Blog",
+    "section": "Contact",
+    "text": "Contact\nFeel free to connect with me on GitHub, LinkedIn, or Twitter. You can also reach out via email at swan0249@student.monash.edu for inquiries or collaboration."
   },
   {
     "objectID": "posts/cheese/index.html",
@@ -98,13 +56,6 @@
     "text": "Data Description\nWe utilized data from Cheese.com, which includes information on the fat content, texture, flavor, and aroma of cheeses from various countries. The dataset consists of several variables that describe cheese properties such as fat content, country of origin, and type of milk used.\n\nData Loading\nTo begin, we load the dataset directly from GitHub, ensuring it is ready for analysis:\n\n# Load necessary libraries\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(stringr)\n\n# Load the cheese data from GitHub\ncheeses &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv')\n\nRows: 1187 Columns: 19\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (17): cheese, url, milk, country, region, family, type, fat_content, cal...\nlgl  (2): vegetarian, vegan\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n# Display the first few rows of the dataset to confirm it loaded correctly\nhead(cheeses)\n\n# A tibble: 6 × 19\n  cheese     url   milk  country region family type  fat_content calcium_content\n  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;          \n1 Aarewasser http… cow   Switze… &lt;NA&gt;   &lt;NA&gt;   semi… &lt;NA&gt;        &lt;NA&gt;           \n2 Abbaye de… http… sheep France  Pays … &lt;NA&gt;   semi… &lt;NA&gt;        &lt;NA&gt;           \n3 Abbaye de… http… cow   France  &lt;NA&gt;   &lt;NA&gt;   semi… 40-46%      &lt;NA&gt;           \n4 Abbaye de… http… cow   France  Burgu… &lt;NA&gt;   semi… &lt;NA&gt;        &lt;NA&gt;           \n5 Abbaye de… http… cow   France  Savoie &lt;NA&gt;   soft… &lt;NA&gt;        &lt;NA&gt;           \n6 Abbaye de… http… cow   France  provi… &lt;NA&gt;   semi… &lt;NA&gt;        &lt;NA&gt;           \n# ℹ 10 more variables: texture &lt;chr&gt;, rind &lt;chr&gt;, color &lt;chr&gt;, flavor &lt;chr&gt;,\n#   aroma &lt;chr&gt;, vegetarian &lt;lgl&gt;, vegan &lt;lgl&gt;, synonyms &lt;chr&gt;,\n#   alt_spellings &lt;chr&gt;, producers &lt;chr&gt;\n\n\n\n\nData Cleaning\nThe dataset contained some missing values and non-numeric fat content values. The cleaning steps included filtering out cheeses with missing fat content and converting the fat content values to numeric format where necessary.\n\n# Clean the cheese data\ncheese_data_clean &lt;- cheeses %&gt;%\n  filter(!is.na(fat_content)) %&gt;%\n  mutate(\n    fat_content = as.numeric(str_extract(fat_content, \"\\\\d+\")),\n    country = ifelse(is.na(country), \"Unknown\", country)\n  )\n\n# Display cleaned data\nhead(cheese_data_clean)\n\n# A tibble: 6 × 19\n  cheese     url   milk  country region family type  fat_content calcium_content\n  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;          \n1 Abbaye de… http… cow   France  &lt;NA&gt;   &lt;NA&gt;   semi…          40 &lt;NA&gt;           \n2 Abbaye du… http… cow   France  Nord-… &lt;NA&gt;   semi…          50 &lt;NA&gt;           \n3 Abertam    http… sheep Czech … Karlo… &lt;NA&gt;   hard…          45 &lt;NA&gt;           \n4 Acorn      http… sheep United… Betha… &lt;NA&gt;   hard…          52 &lt;NA&gt;           \n5 Adelost    http… cow   Sweden  &lt;NA&gt;   Blue   semi…          50 &lt;NA&gt;           \n6 ADL Brick… http… cow   Canada  Princ… Chedd… semi…          12 &lt;NA&gt;           \n# ℹ 10 more variables: texture &lt;chr&gt;, rind &lt;chr&gt;, color &lt;chr&gt;, flavor &lt;chr&gt;,\n#   aroma &lt;chr&gt;, vegetarian &lt;lgl&gt;, vegan &lt;lgl&gt;, synonyms &lt;chr&gt;,\n#   alt_spellings &lt;chr&gt;, producers &lt;chr&gt;"
   },
   {
-    "objectID": "posts/cheese/index.html#data-cleaning-and-preparation",
-    "href": "posts/cheese/index.html#data-cleaning-and-preparation",
-    "title": "Global Cheese Analysis: Fat Content and Characteristics",
-    "section": "Data Cleaning and Preparation",
-    "text": "Data Cleaning and Preparation\nThe data contains some missing values and non-numeric fat content entries. We clean the dataset by filtering out cheeses with missing fat content and converting the fat content to numeric values where applicable.\n\n# Load necessary libraries\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(stringr)\n\n# Clean the cheese data\ncheese_data_clean &lt;- cheeses %&gt;%\n  filter(!is.na(fat_content)) %&gt;%\n  mutate(\n    fat_content = as.numeric(str_extract(fat_content, \"\\\\d+\")),\n    country = ifelse(is.na(country), \"Unknown\", country)\n  )\n\n# Display cleaned data\nhead(cheese_data_clean)\n\n# A tibble: 6 × 19\n  cheese     url   milk  country region family type  fat_content calcium_content\n  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;          \n1 Abbaye de… http… cow   France  &lt;NA&gt;   &lt;NA&gt;   semi…          40 &lt;NA&gt;           \n2 Abbaye du… http… cow   France  Nord-… &lt;NA&gt;   semi…          50 &lt;NA&gt;           \n3 Abertam    http… sheep Czech … Karlo… &lt;NA&gt;   hard…          45 &lt;NA&gt;           \n4 Acorn      http… sheep United… Betha… &lt;NA&gt;   hard…          52 &lt;NA&gt;           \n5 Adelost    http… cow   Sweden  &lt;NA&gt;   Blue   semi…          50 &lt;NA&gt;           \n6 ADL Brick… http… cow   Canada  Princ… Chedd… semi…          12 &lt;NA&gt;           \n# ℹ 10 more variables: texture &lt;chr&gt;, rind &lt;chr&gt;, color &lt;chr&gt;, flavor &lt;chr&gt;,\n#   aroma &lt;chr&gt;, vegetarian &lt;lgl&gt;, vegan &lt;lgl&gt;, synonyms &lt;chr&gt;,\n#   alt_spellings &lt;chr&gt;, producers &lt;chr&gt;"
-  },
-  {
     "objectID": "posts/cheese/index.html#analysis",
     "href": "posts/cheese/index.html#analysis",
     "title": "Global Cheese Analysis: Fat Content and Characteristics",
@@ -131,27 +82,6 @@
     "title": "Global Cheese Analysis: Fat Content and Characteristics",
     "section": "References",
     "text": "References\n\nCheese.com (2024). Global Cheese Information. Retrieved from Cheese.com.\nTidyTuesday (2024). Cheese Dataset. Retrieved from GitHub."
-  },
-  {
-    "objectID": "about.html#projects",
-    "href": "about.html#projects",
-    "title": "Shu’s Blog",
-    "section": "Projects",
-    "text": "Projects\n\nGlobal Cheese Market Analysis\nIn this project, I used data from Cheese.com to analyze the global cheese market, exploring the relationship between fat content, texture, flavor, and aroma across cheeses from different countries. The analysis revealed trends in high-fat cheese popularity in European markets and provided recommendations for market expansion.\n\n\nCustomer Behavior Analysis in Retail\nIn this project, I analyzed customer behavior data from the retail industry, using machine learning models to identify key consumption patterns. The insights from this analysis helped improve customer experience and increase sales by optimizing marketing strategies and boosting customer loyalty."
-  },
-  {
-    "objectID": "about.html#about-me",
-    "href": "about.html#about-me",
-    "title": "Shu’s Blog",
-    "section": "About Me",
-    "text": "About Me\nI am a Business Analytics student at Monash University, passionate about solving business problems through data analysis and predictive modeling. During my studies, I have worked on various data-driven projects, gaining experience in optimizing business processes, forecasting market trends, and providing decision support. My GitHub profile showcases the projects and code I have developed."
-  },
-  {
-    "objectID": "about.html#contact",
-    "href": "about.html#contact",
-    "title": "Shu’s Blog",
-    "section": "Contact",
-    "text": "Contact\nFeel free to connect with me on GitHub, LinkedIn, or Twitter. You can also reach out via email at swan0249@student.monash.edu for inquiries or collaboration."
   },
   {
     "objectID": "index.html",
