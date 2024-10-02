@@ -12,7 +12,7 @@ about:
       href: https://www.linkedin.com/in/sue-wang-5a0a5632b/
     - icon: twitter
       text: Twitter
-      href: https://twitter.com/your-twitter-handle
+      href: https://x.com/mixiaosue123
 ---
 
 This is a blog template for the Business Analytics program at Monash University, showcasing my projects and experience in the fields of business analytics and data science. I focus on using data-driven methods to support business decisions, with research areas including data analysis, machine learning, business process optimization, and market trend forecasting.
