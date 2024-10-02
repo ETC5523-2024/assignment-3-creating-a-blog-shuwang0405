@@ -24,23 +24,27 @@ Cheese is a globally popular food, known for its diversity in flavor, texture, a
 
 We utilized data from Cheese.com, which includes information on the fat content, texture, flavor, and aroma of cheeses from various countries. The dataset consists of several variables that describe cheese properties such as fat content, country of origin, and type of milk used.
 
-```{r data-loading, echo=TRUE}
-# Load the cheese data from GitHub
-cheeses <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv')
+### Data Loading
 
-# Display the first few rows of the dataset
-head(cheeses)
-```
+To begin, we load the dataset directly from GitHub, ensuring it is ready for analysis:
 
-## Data Cleaning and Preparation
-
-The data contains some missing values and non-numeric fat content entries. We clean the dataset by filtering out cheeses with missing fat content and converting the fat content to numeric values where applicable.
-
-```{r data-cleaning, echo=TRUE, warning=FALSE}
+```{r data-loading, echo=TRUE, warning=FALSE}
 # Load necessary libraries
 library(tidyverse)
 library(stringr)
 
+# Load the cheese data from GitHub
+cheeses <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-06-04/cheeses.csv')
+
+# Display the first few rows of the dataset to confirm it loaded correctly
+head(cheeses)
+```
+
+### Data Cleaning
+
+The dataset contained some missing values and non-numeric fat content values. The cleaning steps included filtering out cheeses with missing fat content and converting the fat content values to numeric format where necessary.
+
+```{r data-cleaning, echo=TRUE, warning=FALSE}
 # Clean the cheese data
 cheese_data_clean <- cheeses %>%
   filter(!is.na(fat_content)) %>%
@@ -72,7 +76,7 @@ knitr::kable(head(avg_fat_by_country, 10), col.names = c("Country", "Average Fat
 
 ### Visualization: Average Fat Content by Country
 
-We visualize the average fat content of cheeses by country in a bar chart to highlight the differences across regions.
+The bar chart below (**Figure 1**) visualizes the average fat content of cheeses from the top 10 countries, highlighting significant regional differences. European countries tend to dominate the list in terms of fat content.
 
 ```{r plot-results-country, fig.cap="Figure 1: Average Fat Content of Cheeses by Country", echo=FALSE}
 # Clean the data to remove duplicates and show the top 10 countries
@@ -93,9 +97,11 @@ ggplot(top_countries, aes(x = reorder(country, avg_fat_content), y = avg_fat_con
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+As shown in **Table 1**, countries like France, Germany, and the United Kingdom have the highest fat content, which contributes to their rich and creamy textures.
+
 ### Fat Content by Texture
 
-We now examine the relationship between cheese texture and fat content by calculating the average fat content for different cheese textures. This analysis helps to understand whether certain textures are associated with higher or lower fat levels.
+Next, we examine the relationship between cheese texture and fat content by calculating the average fat content for different textures. Certain textures, such as "creamy" and "soft," are associated with higher fat content, while firmer textures tend to have lower fat content.
 
 ```{r data-analysis-texture, echo=TRUE}
 # Calculate average fat content by texture
@@ -111,7 +117,7 @@ knitr::kable(head(avg_fat_by_texture, 10), col.names = c("Texture", "Average Fat
 
 ### Visualization: Fat Content by Texture
 
-We plot the average fat content by texture, limiting the chart to the top 50 textures for clarity. We also wrap long texture names and rotate the x-axis labels to improve readability.
+The following plot (**Figure 2**) shows the top 50 textures ranked by their average fat content, with textures like "Creamy" and "Spreadable" having the highest fat content.
 
 ```{r plot-results-texture, fig.cap="Figure 2: Average Fat Content of Cheeses by Texture", echo=FALSE, warning=FALSE}
 
@@ -123,7 +129,6 @@ avg_fat_by_texture <- avg_fat_by_texture %>%
     str_detect(texture, "smooth") ~ "Smooth",
     TRUE ~ texture
   ))
-
 
 top_textures <- avg_fat_by_texture %>% top_n(50, avg_fat_content)
 
@@ -139,7 +144,6 @@ ggplot(top_textures, aes(x = reorder(texture, avg_fat_content), y = avg_fat_cont
         axis.text.y = element_text(size = 8),  
         panel.grid.major = element_line(color = "gray90"),
         plot.title = element_text(hjust = 0.5, face = "bold"))
-
 ```
 
 ## Key Results
@@ -156,5 +160,5 @@ This analysis revealed important relationships between cheese fat content, textu
 - Cheese.com (2024). *Global Cheese Information*. Retrieved from [Cheese.com](https://www.cheese.com/).
 - TidyTuesday (2024). *Cheese Dataset*. Retrieved from [GitHub](https://github.com/rfordatascience/tidytuesday/tree/master/data/2024/2024-06-04).
 
-```
+---
 

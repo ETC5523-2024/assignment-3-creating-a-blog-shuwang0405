@@ -9,7 +9,7 @@ about:
       href: https://github.com/shuwang0405
     - icon: linkedin
       text: LinkedIn
-      href: https://www.linkedin.com/in/your-linkedin-profile
+      href: https://www.linkedin.com/in/sue-wang-5a0a5632b/
     - icon: twitter
       text: Twitter
       href: https://twitter.com/your-twitter-handle
